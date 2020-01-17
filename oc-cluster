@@ -497,7 +497,7 @@ function up {
         exit
       fi
       # CMDLINE+=" --image $__IMAGE"
-    else
+    # else
       # [ ! -z $__PARM_OC_IMAGE ] && CMDLINE+=" --image $__PARM_OC_IMAGE" || CMDLINE+=" --image $__IMAGE"
     fi
     if [ ! -z $__PARM_OC_PUBLIC_HOSTNAME ]; then
