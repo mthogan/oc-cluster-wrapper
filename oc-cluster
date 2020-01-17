@@ -61,7 +61,8 @@ echo "# Using client for $__TYPE $__VERSION"
 USER="$(id -u)"
 GROUP="$(id -g)"
 
-OPENSHIFT_HOME_DIR=${OPENSHIFT_HOME:-$HOME/.oc}
+MOUNTHOME=${MOUNTHOME:-/mnt/data1/openshift}
+OPENSHIFT_HOME_DIR=${OPENSHIFT_HOME:-$MOUNT_HOME/.oc}
 OPENSHIFT_PROFILES_DIR=${OPENSHIFT_PROFILES_DIR:-$OPENSHIFT_HOME_DIR/profiles}
 OPENSHIFT_CERTS_DIR=${OPENSHIFT_CERTS_DIR:-$OPENSHIFT_HOME_DIR/certs}
 PLUGINS_DIR=${PLUGINS_DIR:-$DIR/plugins.d}
@@ -74,7 +75,7 @@ OPENSHIFT_CA_KEY=${OPENSHIFT_CA_KEY:-$OPENSHIFT_CERTS_DIR/openshift-selfsigned-l
 OPENSHIFT_CA_SERIAL=${OPENSHIFT_CA_SERIAL:-$OPENSHIFT_CERTS_DIR/openshift-selfsigned-local-ca.serial}
 OPENSHIFT_CA_SIGNER=${OPENSHIFT_CA_SIGNER:-"selfsigners@openshift.local"}
 # Variables for Developer mode
-M2_HOME=${M2_HOME:-$HOME/.m2}
+M2_HOME=${M2_HOME:-$MOUNT_HOME/.m2}
 
 OS_DEFAULT_USER="developer"
 OS_DEFAULT_PROJECT="myproject"
@@ -483,7 +484,7 @@ function up {
 
     # Build command line
     local CMDLINE="${OC_BINARY} cluster up"
-    [ ! -z "$__PARM_OC_VERSION" ] && CMDLINE+=" --version $__PARM_OC_VERSION" || CMDLINE+=" --version $__VERSION"
+    # [ ! -z "$__PARM_OC_VERSION" ] && CMDLINE+=" --version $__PARM_OC_VERSION" || CMDLINE+=" --version $__VERSION"
     if [ ! -z "$__PARM_OC_TYPE" ]; then
       if [ "$__PARM_OC_TYPE" == "ocp" ]; then
         __TYPE="ocp"
@@ -495,9 +496,9 @@ function up {
         echo "[ERROR] '$__PARM_OC_TYPE' Not supported. Only 'ocp' and 'origin' are supported"
         exit
       fi
-      CMDLINE+=" --image $__IMAGE"
+      # CMDLINE+=" --image $__IMAGE"
     else
-      [ ! -z $__PARM_OC_IMAGE ] && CMDLINE+=" --image $__PARM_OC_IMAGE" || CMDLINE+=" --image $__IMAGE"
+      # [ ! -z $__PARM_OC_IMAGE ] && CMDLINE+=" --image $__PARM_OC_IMAGE" || CMDLINE+=" --image $__IMAGE"
     fi
     if [ ! -z $__PARM_OC_PUBLIC_HOSTNAME ]; then
       OC_CLUSTER_PUBLIC_HOSTNAME=${__PARM_OC_PUBLIC_HOSTNAME}
