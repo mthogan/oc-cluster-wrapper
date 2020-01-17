@@ -517,8 +517,8 @@ function up {
     if supports service-catalog; then
       [ ! -z $__PARM_OC_SERVICECATALOG ] && CMDLINE+=" --service-catalog $__PARM_OC_SERVICECATALOG"
     fi
-    CMDLINE+=" --host-data-dir $OPENSHIFT_HOST_DATA_DIR"
-    CMDLINE+=" --host-config-dir $OPENSHIFT_HOST_CONFIG_DIR"
+    # CMDLINE+=" --host-data-dir $OPENSHIFT_HOST_DATA_DIR"
+    # CMDLINE+=" --host-config-dir $OPENSHIFT_HOST_CONFIG_DIR"
     if supports pv; then
       CMDLINE+=" --host-pv-dir $OPENSHIFT_HOST_PV_DIR"
     fi
