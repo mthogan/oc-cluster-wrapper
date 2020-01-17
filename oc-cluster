@@ -522,7 +522,7 @@ function up {
     if supports pv; then
       CMDLINE+=" --host-pv-dir $OPENSHIFT_HOST_PV_DIR"
     fi
-    CMDLINE+=" --use-existing-config"
+    # CMDLINE+=" --use-existing-config"
     CMDLINE+=" -e TZ=$OC_CLUSTER_TZ"
     for ENV_PARM in "${__PARM_OC_ENV[@]}" ; do
         CMDLINE+=" -e $ENV_PARM"
